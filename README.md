@@ -1,49 +1,84 @@
-# spring-jpa-jersey
+# Skills in Spring, Data manipulation and JAX RS
+Here you will find a scaffold of a project that aims to expose a REST service to list cities.
+You need to upgrade the project to the newest versions and implement this service using any necessary means.
 
-# spring-jpa-jersey RESTful in Spring REST, Spring Boot, Spring MVC, JPA and MySQL
-# Here you will find a small project that aims to expose a REST service to list cities.
+- Java (preferably Java 8 and Functional programming as much as possible)
+- RESTFull service
+- Data manipulation layer
+- Spring-boot (upgrade to the latest version)
+- Maven
 
-It was developed in Java 8 (1.8.0) and uses Tomcat 8.5 to deploy the application. The RESTFull service Data manipulation layer is made with Spring Rest Framework. It's used Spring 4 MVC for DI, JPA as persistence layer with Maven as our dependency manager and MySQL Database for the entities.
+# Database
+The actual implementation uses H2 in memory as the database. You will find also the scripts 
+for MySQL. The scripts insert a few entries in each table.
 
-There are some scripts for MySQL with some inserts of a few entries in each table and the creation of the Schema, which is necessary. The application creates the tables and its relationships
+# Proposed exercise
+The candidate must:
+- Create Entity classes for the tables, including relationships
+- Create the Data manipulation layer. Feel free to use structure or framework you like (JPA, JDBC, Spring Data, etc).
+- Create a GET REST service to retrieve the list of cities in the database, and return them as a JSON object.
+- The service may receive the query param "country" as a String, to restrict the search. The parameter may be part of the Country name
+   http://server:port/rest/cities[?country=name]
 
-Proposed exercise
-The purposes of this project:
+- Create an operation to load data into the database (Here you're free to be creative. You can load data from a simple CSV, a spreadsheet, a rest service, etc...)
 
-Creates Entity classes of Country and City for the tables and its proper relationships
+Feel free to modify the files included, upgrade frameworks, add or remove packages, in every aspect you want. Just check the note regarding JUnit tests below.
 
-The Data manipulation layer uses Spring Data framework and JPA with MySQL database.
+# Expected results
+After the implementation, the application should run after the following command line:
 
-It uses Dependency Injection of Spring Framework to instanciate the service classes
+	java -jar target/spring-jpa-jersey.jar
+    
+or 
 
-Uses Spring Rest Framework to create GET, POST, PUT and DELETE operations to manipulate the data and return them as a JSON object.
+    mvn spring-boot:run
+    
+or deploy on Tomcat, or Jetty or an Application Server, as long as you include instructions for the deploy.
 
-I used the chrome app Postman to test all the CRUD operations.
 
-The Deployment of this project:
+Then, open a browser and type :
 
-The .jar file is attached with this project. And also can be done using eclipse by following these steps:
+    http://localhost:8090/rest/cities?country=Uni
 
-Right click on the location project folder
-Running the menu > Run > As > Maven install
 
-or using the maven command: mvn package
+It must return, at least the following (ids may vary) :
 
-The .jar file will be in the target folder of the project (in /root/workspace/location/target)
+    [
+        {
+            "id":86,
+            "name":"New York",
+            "country":{
+                "id":2,
+                "name":"United States"
+            }
+        },
+        {
+            "id":87,
+            "name":"Los Angeles",
+            "country":{
+                "id":2,
+                "name":"United States"
+            }
+        },
+        {
+            "id":88,
+            "name":"Atlanta",
+            "country":{
+                "id":2,
+                "name":"United States"
+            }
+        }
+    ]
 
-Stop the Tomcat Server service
-To deploy in Tomcat 8 server, copy the .jar file in the webapps in tomcat directory (your_host/tomcat/apache-tomcat-8.5.13/webapps the menu > Run > As > Maven install)
 
-Restart the Tomcat Server service and test the .jar using the browser with the URL: http://your_ip:8080/springdata/v1/cities/all (can be the default localhost:8080)
-After you have it deployed (check the /logs dir for any problems), it should be accessible via: http://your_host:your_port/springdata/v1/countries/all.
-The Database usage of this project:
+# Unit tests
 
-The database is MySQL Database 5.
+Included you will find JUnit tests, with commented lines. Those tests must run after the lines
+are uncommented. 
 
-Schema: springdatadb
-Url: jdbc:mysql://localhost:3306/springdatadb
+## Challenge
 
-The SQL Scripts usage of this project:
+Post the percentage of line covered by tests of your application.
 
-Attached it will have a SQL script file with the creation of the tables for testing, and the insertion of some data for testing as well
 
+*** PLUS: It would be great if you can come up with unit and integration tests separately in their apropriate building phases.

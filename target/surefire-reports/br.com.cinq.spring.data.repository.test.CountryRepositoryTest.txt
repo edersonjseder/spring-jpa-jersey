@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.com.cinq.spring.data.repository.test.CountryRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 sec - in br.com.cinq.spring.data.repository.test.CountryRepositoryTest
