@@ -41,10 +41,17 @@ public class Application implements CommandLineRunner {
 		String filePath = getClass().getClassLoader().getResource(FILENAME).getPath();
 
 		LOG.info("Complete SQL script path {} ", filePath);
+		
 		/*
+		 * This snippet is for executing SQL script on your current database 
+		 * configured according to your database credentials and replace them
+		 * in applications.properties file
+		 * 
 		Utils upload = new Utils();
 
-		upload.executeScriptUsingScriptRunner(filePath); */
+		upload.executeScriptUsingScriptRunner(filePath); 
+		
+		*/
 			
 	}
 
